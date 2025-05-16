@@ -1,0 +1,12 @@
+---
+---
+{
+    {% for file in site.gtfoud %}
+        {% capture gtfoud %}{% include get_bin_name path=file.path %}{% endcapture %}
+        {{ gtfoud | jsonify }}: {
+            "description": {{ file.description | jsonify }},
+            "functions": {{ file.functions | jsonify }}
+        }
+        {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+}
