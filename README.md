@@ -1,4 +1,4 @@
-![logo][assets/logo.png]
+![logo](https://github.com/user-attachments/assets/6c67cf99-2997-42b5-95ad-25ec7b734acc)
 
 **GTFOud** (Get The File Out - upload/download edition) is a curated collection of legitimate scripting languages, utilities, binaries, libraries, packages, and tools that can be leveraged to transfer files — from a local system to a remote target and vice-versa — for privilege escalation, lateral movement, or data exfiltration on compromised systems, even in restricted environments.
 
