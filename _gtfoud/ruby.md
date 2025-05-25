@@ -3,7 +3,7 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
-        ruby -e 'require "open-uri"; download = open(ENV["$RURL"]); IO.copy_stream(download, ENV["$LFILE"])'
+        ruby -e 'require "open-uri"; download = open(ENV["$URL"]); IO.copy_stream(download, ENV["$LFILE"])'
   server:
     - description: Serve files in the local folder running an HTTP server. This requires version 1.9.2 or later.
       code: |
