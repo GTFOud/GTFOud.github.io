@@ -4,6 +4,5 @@ functions:
   server:
     - description: Serve files in the local folder running an HTTP server.
       code: |
-        LPORT=12345
         busybox httpd -f -p $LPORT -h .
 ---
