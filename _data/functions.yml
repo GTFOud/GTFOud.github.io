@@ -16,3 +16,7 @@ file-download:
 data-exfiltration:
   label: Data exfiltration
   description: Exfiltrate command/file output or encoded data to another system
+
+chaining:
+  label: Chaining
+  description: Combine multiple techniques or actions sequentially to GTFO
