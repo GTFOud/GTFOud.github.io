@@ -14,6 +14,7 @@ Inspired by [GTFOBins](https://gtfobins.github.io) and [LOLBAS](https://lolbas-p
 
 - [ ] Add an OS/Dependency search column.
 - [ ] Add mobile (iOS/Android) file transfer techniques section.
+- [ ] Add specific transfer techniques through chaining only.
 - [ ] Enhance the website UI for better search & filtering.
 - [ ] Implement automated tests for YAML schema validation.
 - [ ] Write more contribution guidelines & templates.
