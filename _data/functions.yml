@@ -1,0 +1,18 @@
+---
+# this is the rendering order of functions
+
+server:
+  label: Server
+  description: Allows the system to act as a server to host local files
+
+file-upload:
+  label: File upload
+  description: Upload files from the local system to a remote server
+
+file-download:
+  label: File download
+  description: Download files from a remote server to the local system
+
+data-exfiltration:
+  label: Data exfiltration
+  description: Exfiltrate command/file output or encoded data to another system

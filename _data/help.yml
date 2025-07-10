@@ -1,0 +1,56 @@
+---
+# this is the rendering order of help
+
+remote-user:
+  label: RUSER
+  description: Username on the remote system
+
+local-user:
+  label: LUSER
+  description: Username on the local system
+
+command:
+  label: CMD
+  description: Command to be executed
+
+remote-path:
+  label: RPATH
+  description: |
+      Path on the remote system
+      
+      Format examples: proto://$RHOST:$RPORT/$RFILE or $USER@$RHOST:~/$RFILE
+
+remote-host:
+  label: RHOST
+  description: Hostname or IP of the remote system
+
+remote-port:
+  label: RPORT
+  description: Port used to connect to the remote system
+
+remote-file:
+  label: RFILE
+  description: File located on the remote system
+
+local-path:
+  label: LPATH
+  description: |
+      Path on the local system
+      
+      Format examples: proto://$LHOST:$LPORT/$LFILE or $USER@$LHOST:~/$LFILE
+
+local-host:
+  label: LHOST
+  description: Hostname or IP of the local system
+
+local-port:
+  label: LPORT
+  description: Port used on the local system
+
+local-file:
+  label: LFILE
+  description: File located on the local system
+
+new-file:
+  label: NFILE
+  description: New file name used for saving output or downloads

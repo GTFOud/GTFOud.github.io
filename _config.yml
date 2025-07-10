@@ -1,0 +1,19 @@
+---
+title: GTFOud
+
+exclude: ['/scripts', '/Gemfile', '/Makefile', '/README.md', '/CONTRIBUTING.md']
+
+permalink: pretty
+
+collections:
+  gtfoud:
+    output: true
+
+defaults:
+  - scope:
+      path: '_gtfoud'
+    values:
+      layout: bin
+
+sass:
+  sass_dir: assets/css
