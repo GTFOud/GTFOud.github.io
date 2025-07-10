@@ -45,6 +45,7 @@ Before sending a PR, ensure the following:
      - `file-upload`: It can exfiltrate local files to a remote host.
      - `file-download`: It can download remote files to the local system.
      - `data-transfer`: It can transmit command/file output or encoded data.
+     - `chaining`: Combine multiple techniques or actions sequentially to GTFO.
    - If the tool supports multiple actions, include all applicable tags.
 
 3. **One-liner or Simple Code Snippet**
